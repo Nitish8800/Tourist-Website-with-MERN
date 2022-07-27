@@ -7,11 +7,12 @@ import morgan from "morgan";
 
 const app = express();
 
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
 
-
-
-const MONGODB_URL = "Your MongoDB URL";
+const MONGODB_URL = `mongodb+srv://Nitish8800:8800@bhumitech.anzew.mongodb.net/Toursit`;
 const port = 5000;
 
 mongoose
