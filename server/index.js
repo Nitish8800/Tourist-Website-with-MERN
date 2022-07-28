@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import morgan from "morgan";
-// import userRouter from "./routes/user.js";
+import userRouter from "./routes/user.js";
 // import tourRouter from "./routes/tour.js";
 
 const app = express();
@@ -11,8 +11,15 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
+app.use(morgan("dev"));
+app.use(express.json({ limit: "30mb", extended: true }));
+app.use(express.urlencoded({ limit: "30mb", extended: true }));
+app.use(cors());
 
-const MONGODB_URL = `mongodb+srv://Nitish8800:8800@bhumitech.anzew.mongodb.net/Toursit`;
+app.use("/users", userRouter); // http://localhost:5000/users/signup
+// app.use("/tour", tourRouter);
+
+const MONGODB_URL = `mongodb+srv://Nitish8800:8800@bhumitech.anzew.mongodb.net/toursit_db`;
 const port = 5000;
 
 mongoose
