@@ -55,6 +55,15 @@ export const signup = async (req, res) => {
     console.log(error);
   }
 };
+export const users = async (req, res) => {
+  try {
+    const users = await UserModal.find().lean().exec();
+    res.status(200).send(users);
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong" });
+    console.log(error);
+  }
+};
 
 export const googleSignIn = async (req, res) => {
   const { email, name, token, googleId } = req.body;
@@ -77,4 +86,4 @@ export const googleSignIn = async (req, res) => {
     res.status(500).json({ message: "Something went wrong" });
     console.log(error);
   }
-}; 
+};
